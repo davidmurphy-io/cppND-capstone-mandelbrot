@@ -10,7 +10,7 @@ namespace mandelbrot_visualiser
 
         //auto graph{io2d::path_builder{}};
         auto pb{io2d::path_builder{}};
-        
+
         auto render_props{io2d::render_props{}};
         render_props.compositing(io2d::compositing_op::source);
         // /auto bp{io2d::brush_props{}};
@@ -46,16 +46,30 @@ namespace mandelbrot_visualiser
 
     void Mandelbrot::Step()
     {
-        generate_mandelbrot();
+        std::cout << "Step called" << std::endl;
+        for(int i = 1; i < _max_thread_count; ++i)
+        {
+            std::cout << "1st loop, thread size: " << _threads.size() << std::endl;
+            _threads.emplace( _threads.end(), std::thread([i, this](){this->generate_mandelbrot(i);}));
+            std::cout << "after emplace" << std::endl;
+        }
+
+        for(int thread = 0; thread <= _threads.size()-1; ++thread)
+        {
+            _threads[thread].join();
+        }
+
+        _threads.erase(_threads.begin(), _threads.end());
+        //generate_mandelbrot();
         //dump_array();
     }
 
-    void Mandelbrot::generate_mandelbrot()
+    void Mandelbrot::generate_mandelbrot(int thread_number)
     {
-        std::cout << "Mandelbrot::generate_mandelbrot() called." << std::endl;
-        for (int x = 0; x <= _width; x++)
+        std::cout << "Mandelbrot::generate_mandelbrot() called. Thread Num: " << thread_number << std::endl;
+        for (int x = 0; x < _width; x+= thread_number)
         {
-            for (int y = 0; y <= _height; y++)
+            for (int y = 0; y < _height; y++)
             {
                 double xScale = (double)x / (double)_width;
                 double yScale = (double)y / (double)_height;
@@ -80,6 +94,7 @@ namespace mandelbrot_visualiser
                 //std::cout << _matrix[x][y] << std::endl;
             }
         }
+        std::cout << "Generate finished on thread: " << thread_number << std::endl;
     }
 
     void Mandelbrot::dump_array()

@@ -1,5 +1,7 @@
 #include <io2d.h>
 
+#include <thread>
+
 using namespace std::experimental;
 
 namespace mandelbrot_visualiser
@@ -17,8 +19,10 @@ namespace mandelbrot_visualiser
         void Step();
 
         void dump_array();
+
     private:
-        void generate_mandelbrot();
+        void generate_mandelbrot(int thread_number);
+
         const int _width{};
         const int _height{};
         const int _maxInterations{1000};
@@ -32,5 +36,8 @@ namespace mandelbrot_visualiser
         // 2d vector - data grid
         //std::vector<std::vector<double>> _matrix{};
         double _matrix[400][400]{0};
+
+        std::vector<std::thread> _threads{};
+        const unsigned int _max_thread_count{std::thread::hardware_concurrency()};
     };
 } // namespace mandelbrot_visualiser
