@@ -56,7 +56,10 @@ namespace mandelbrot_visualiser
 
         for(int thread = 0; thread <= _threads.size()-1; ++thread)
         {
-            _threads[thread].join();
+            if (_threads[thread].joinable())
+            {
+              _threads[thread].join();
+            }
         }
 
         _threads.erase(_threads.begin(), _threads.end());
