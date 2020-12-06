@@ -15,7 +15,7 @@ namespace mandelbrot_visualiser
     {
         std::cout << "Mandelbrot Visualiser - mandelbrot_visualiser::run() called" << std::endl;
 
-        auto display = io2d::output_surface{400, 400, io2d::format::argb32, io2d::scaling::none, io2d::refresh_style::fixed, 30.f};
+        auto display = io2d::output_surface{600, 400, io2d::format::argb32, io2d::scaling::none, io2d::refresh_style::fixed, 30.f};
         display.size_change_callback([&](io2d::output_surface &surface) {
             surface.dimensions(surface.display_dimensions());
         });
