@@ -2,7 +2,7 @@
 
 Mandelbrot simulator written in C++ using the io2d image library.
 
-<img src="/images/mandelbrot.png" width="400" height="400" title="Mandelbrot Simulator"/>
+<img src="/images/mandelbrot_zoom.gif" width="600" height="400" title="Mandelbrot Simulator"/>
 
 ## Cloning
 Clone using either:
