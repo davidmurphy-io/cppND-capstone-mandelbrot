@@ -46,3 +46,26 @@ git clone git@github.com:davidmurphy-io/cppND-capstone-mandelbrot.git
   ```
   ./Mandelbrot_visualiser
   ```
+  ### Udacity Rubric points addressed
+  #### Loops, Functions, I/O
+  | Rubric point  | Location |
+  | ------------- | ------------- |
+  | A variety of control structures are used in the project. The project code is clearly organized into functions. | Evident through-out the project |
+
+  #### Object Oriented Programming
+  | Rubric point  | Location |
+  | ------------- | ------------- |
+  | The project code is organized into classes with class attributes to hold the data, and class methods to perform tasks. | Evident through-out the project |
+  | All class data members are explicitly specified as public, protected, or private. | [mandelbrot.h](./src/mandelbrot.h) |
+  | All class members that are set to argument values are initialized through member initialization lists. | [mandelbrot.h](./src/mandelbrot.h) |
+  | All class member functions document their effects, either through function names, comments, or formal documentation.  Member functions do not change program state in undocumented ways. | Evident through-out the project  |
+
+  #### Memory Management
+  | Rubric point  | Location |
+  | ------------- | ------------- |
+  | At least two variables are defined as references, or two functions use pass-by-reference in the project code. | Mandelbrot::Mandelbrot() and Mandelbrot::Display() [mandelbrot.h](./src/mandelbrot.h) |
+
+  #### Concurrency
+  | Rubric point  | Location |
+  | ------------- | ------------- |
+  | The project uses multiple threads in the execution. | Mandelbrot::Step() [mandelbrot.cpp](./src/mandelbrot.cpp) |
